@@ -26,41 +26,40 @@
         android:layout_marginTop="80dp">
         <EditText
             android:id="@+id/login_txt"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_width="306dp"
+            android:layout_height="50dp"
             android:hint="아이디"
             android:textSize="20sp"
             android:gravity="center"
+            android:layout_gravity="center"
             android:background="@drawable/id_pw_txt"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="1"/>
+            android:layout_marginBottom="10dp"/>
 
         <EditText
             android:id="@+id/password_txt"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_width="306dp"
+            android:layout_height="50dp"
             android:hint="비밀번호"
             android:gravity="center"
+            android:layout_gravity="center"
             android:textSize="20sp"
-            android:layout_weight="1"
             android:background="@drawable/id_pw_txt"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="20dp"/>
 
         <Button
             android:id="@+id/signin_btn"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_weight="1"
+            android:layout_width="305dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/signin_btn"
             android:text="Sign in"
             android:textColor="#FFFFFF"
-            android:textSize="35sp"
-            android:background="@drawable/signin_btn"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp" />
+            android:textSize="35sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <LinearLayout
