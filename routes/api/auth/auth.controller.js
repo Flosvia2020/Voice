@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 exports.register = (req, res) => {
     const { id, password, nickname } = req.body
     let newUser = null
+    let p
 
     const create = (user) => {
         if(user) {
@@ -16,7 +17,7 @@ exports.register = (req, res) => {
     const count = (user) => {
         const secret = req.app.get('jwt-secret')
         newUser = user
-        const p = jwt.sign(
+        p = jwt.sign(
                 {
                     _id: user._id,
                     id: user.id,
@@ -29,9 +30,6 @@ exports.register = (req, res) => {
                     subject: 'userInfo'
                 }
             )
-        res.json({
-            token: p
-        })
         return acount.count({}).exec()
     }
 
@@ -45,8 +43,9 @@ exports.register = (req, res) => {
 
     const respond = (isAdmin) => {
         res.json({
-            message: 'registered successfully',
-            admin: isAdmin ? true : false
+            message: '회원가입 성공',
+            admin: isAdmin ? true : false,
+            token: p
         })
     }
 
