@@ -24,6 +24,12 @@ const Login = () => {
     const loginData = new FormData();
     loginData.append("id", id);
     loginData.append("password", password);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    return post(url, loginData, config);
   };
   return (
     <Container>
