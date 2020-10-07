@@ -3,7 +3,7 @@ import { Logo, InputLabel, LinkText, RegularFont } from "../Style/Label";
 import { ColorButton } from "../Style/Button";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 const Container = styled.div`
   margin: 70px 0;
   display: flex;
@@ -15,22 +15,24 @@ const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
+  const callApi = () => {
+    const url = "/api/auth/login";
+    const config = {
+      method: "post",
+      body: {
+        id: id,
+        password: password,
+      },
+    };
+    axios.post(url, config);
+  };
   const onHandleSubmit = () => {
     if (id == "" || password == "") {
       alert("아이디 혹은 비밀번호를 입력해 주세요.");
       return;
     }
-    const url = "";
-    const loginData = new FormData();
-    loginData.append("id", id);
-    loginData.append("password", password);
-    const config = {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    };
-    return post(url, loginData, config);
   };
+
   return (
     <Container>
       <Logo>VOICE</Logo>

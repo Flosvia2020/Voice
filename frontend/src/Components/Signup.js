@@ -10,6 +10,7 @@ import {
 import { ColorButton } from "../Style/Button";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div`
   margin: 70px 0;
