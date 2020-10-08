@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import client from "../api/client";
 import {
   Logo,
   InputLabel,
@@ -10,7 +11,6 @@ import {
 import { ColorButton } from "../Style/Button";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 const Container = styled.div`
   margin: 70px 0;
@@ -25,19 +25,41 @@ const Signup = () => {
   const [passWord, setPassWord] = useState("");
   const [isValid, setIsValid] = useState(true);
 
+  const callApi = (user) => {
+    const url = "/api/auth/register";
+    const config = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    };
+    client
+      .get(url, config)
+      .then((res) => console.log(res.message))
+      .catch((e) => console.log("회원가입 실패 : " + e.message));
+  };
+
   const onHandleSubmit = () => {
-    if (!isValid || nickName == "" || id.length <= 8) {
+    if (!isValid || nickName === "" || id.length <= 5) {
       alert("오류!");
       return;
     }
+    const user = {
+      id: id,
+      password: passWord,
+      nickname: nickName,
+    };
+    callApi(user);
   };
+
   const passwordConfirmChange = (e) => {
-    e.target.value != passWord ? setIsValid(false) : setIsValid(true);
+    e.target.value !== passWord ? setIsValid(false) : setIsValid(true);
   };
 
   return (
     <Container>
-      <Logo>VOICE</Logo>
+      <Logo>회원가입</Logo>
       <InputLabel
         placeholder="NICKNAME"
         value={nickName}
@@ -51,11 +73,13 @@ const Signup = () => {
         }}
       />
       <InputLabel
+        type="password"
         placeholder="PASSWORD"
         value={passWord}
         onChange={(e) => setPassWord(e.target.value)}
       />
       <PasswordComfirm
+        type="password"
         placeholder="CONFIRM PASSWORD"
         isValid={isValid}
         onChange={passwordConfirmChange}

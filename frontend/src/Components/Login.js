@@ -15,22 +15,29 @@ const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
-  const callApi = () => {
+  const callApi = (user) => {
     const url = "/api/auth/login";
     const config = {
-      method: "post",
-      body: {
-        id: id,
-        password: password,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify(user),
     };
-    axios.post(url, config);
+    return axios.post(url, config);
   };
   const onHandleSubmit = () => {
-    if (id == "" || password == "") {
+    if (id === "" || password === "") {
       alert("아이디 혹은 비밀번호를 입력해 주세요.");
       return;
     }
+    const user = {
+      id: id,
+      password: password,
+    };
+    callApi(user)
+      .then((res) => alert(res.message))
+      .catch((e) => alert(e.message));
   };
 
   return (
