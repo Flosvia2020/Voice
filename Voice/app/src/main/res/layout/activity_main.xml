@@ -88,7 +88,5 @@
             android:gravity="center"
             android:textColor="#01DFD7"
             android:layout_marginBottom="30dp"/>
-
     </LinearLayout>
-
 </LinearLayout>

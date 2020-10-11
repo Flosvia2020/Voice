@@ -20,7 +20,6 @@ public class Signup extends AppCompatActivity {
     EditText pw_ch_txt;
     Button sign_up_btn;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +42,7 @@ public class Signup extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
                 else if (pw_ch_txt.getText().toString().length() == 0)
                     Toast.makeText(getApplicationContext(), "비밀번호 확인을 입력하세요.", Toast.LENGTH_SHORT).show();
-                else if (pw_txt.getText().toString() == pw_ch_txt.getText().toString()){
+                else if (pw_txt.getText().toString().equals(pw_ch_txt.getText().toString()) ){
                     Toast.makeText(getApplicationContext(), "회원가입 성공", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Signup.this, MainActivity.class);
                     startActivity(intent);
@@ -51,8 +50,6 @@ public class Signup extends AppCompatActivity {
                 else if (pw_txt.getText().toString() != pw_ch_txt.getText().toString()){
                     Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
-
-
 
 //                if(id_txt.getText().toString().length() == 0 && pw_txt.getText().toString().length() == 0 && pw_ch_txt.getText().toString().length() == 0) {
 //                    Toast.makeText(getApplicationContext(), "아이디와 비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
@@ -79,14 +76,8 @@ public class Signup extends AppCompatActivity {
 //                    Toast.makeText(getApplicationContext(), "회원가입 성공", Toast.LENGTH_SHORT).show();
 //                }
 
-
-
-
             }
         });
-
-        
-
 
         textView = (TextView)findViewById(R.id.sign_in_txt);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +87,5 @@ public class Signup extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }
