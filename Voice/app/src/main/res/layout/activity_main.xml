@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/vclg"
-        android:layout_weight="0"/>
+        android:layout_weight="0"
+        android:layout_marginBottom="30dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,8 +26,8 @@
         android:orientation="vertical"
         android:layout_marginTop="80dp">
         <EditText
-            android:id="@+id/login_txt"
-            android:layout_width="306dp"
+            android:id="@+id/signin_id_txt"
+            android:layout_width="290dp"
             android:layout_height="50dp"
             android:hint="아이디"
             android:textSize="20sp"
@@ -36,19 +37,19 @@
             android:layout_marginBottom="10dp"/>
 
         <EditText
-            android:id="@+id/password_txt"
-            android:layout_width="306dp"
+            android:id="@+id/signin_pw_txt"
+            android:layout_width="290dp"
             android:layout_height="50dp"
             android:hint="비밀번호"
             android:gravity="center"
             android:layout_gravity="center"
             android:textSize="20sp"
             android:background="@drawable/id_pw_txt"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="65dp"/>
 
         <Button
             android:id="@+id/signin_btn"
-            android:layout_width="305dp"
+            android:layout_width="290dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:background="@drawable/signin_btn"
@@ -61,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
     </LinearLayout>
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,13 +77,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="아직 회원이 아니신가요?"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:gravity="center"/>
         <TextView
             android:id="@+id/sign_up_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:text="@string/underline"
             android:gravity="center"
             android:textColor="#01DFD7"

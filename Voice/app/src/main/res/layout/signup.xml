@@ -13,11 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_weight="7"/>
     <ImageView
-        android:id="@+id/login_logo"
+        android:id="@+id/signup_logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/vclg"
-        android:layout_weight="0"/>
+        android:layout_weight="0" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,8 +25,8 @@
         android:orientation="vertical"
         android:layout_marginTop="80dp">
         <EditText
-            android:id="@+id/signin_nick_txt"
-            android:layout_width="306dp"
+            android:id="@+id/signup_nick_txt"
+            android:layout_width="290dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:hint="닉네임"
@@ -35,11 +35,11 @@
             android:background="@drawable/id_pw_txt"
             android:layout_marginRight="45dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="12.8dp" />
 
         <EditText
-            android:id="@+id/signin_id_txt"
-            android:layout_width="306dp"
+            android:id="@+id/signup_id_txt"
+            android:layout_width="290dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:hint="아이디"
@@ -48,11 +48,11 @@
             android:background="@drawable/id_pw_txt"
             android:layout_marginRight="45dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="12.8dp" />
 
         <EditText
-            android:id="@+id/signin_pw_txt"
-            android:layout_width="306dp"
+            android:id="@+id/signup_pw_txt"
+            android:layout_width="290dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:hint="비밀번호"
@@ -61,11 +61,11 @@
             android:background="@drawable/id_pw_txt"
             android:layout_marginRight="45dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="12.8dp"/>
 
         <EditText
-            android:id="@+id/signin_pw_ch_txt"
-            android:layout_width="306dp"
+            android:id="@+id/signup_pw_ch_txt"
+            android:layout_width="290dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:hint="비밀번호 확인"
@@ -74,11 +74,11 @@
             android:background="@drawable/id_pw_txt"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="55dp"/>
 
         <Button
-            android:id="@+id/signin_btn"
-            android:layout_width="306dp"
+            android:id="@+id/signup_btn"
+            android:layout_width="290dp"
             android:layout_height="60dp"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
@@ -107,13 +107,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="이미 계정이 있으신가요?"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:gravity="center"/>
         <TextView
             android:id="@+id/sign_in_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:text="@string/underline2"
             android:gravity="center"
             android:textColor="#01DFD7"
