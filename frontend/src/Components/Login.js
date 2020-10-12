@@ -3,15 +3,16 @@ import { Logo, InputLabel, LinkText, RegularFont } from "../Style/Label";
 import { ColorButton } from "../Style/Button";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import client from "../api/client";
+
 const Container = styled.div`
-  margin: 70px 0;
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Login = () => {
+const Login = ({ setCookie }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,9 +23,18 @@ const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
     };
-    return axios.post(url, config);
+    client
+      .post(url, user, config)
+      .then((res) => {
+        const { token } = res.data;
+        setCookie("user", token);
+      })
+      .catch((e) =>
+        alert(
+          "로그인에 실패하였습니다. 아이디 혹은 비밀번호를 다시 확인해 주세요."
+        )
+      );
   };
   const onHandleSubmit = () => {
     if (id === "" || password === "") {
@@ -35,9 +45,7 @@ const Login = () => {
       id: id,
       password: password,
     };
-    callApi(user)
-      .then((res) => alert(res.message))
-      .catch((e) => alert(e.message));
+    callApi(user);
   };
 
   return (
