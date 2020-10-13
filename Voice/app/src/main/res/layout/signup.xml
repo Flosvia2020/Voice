@@ -39,7 +39,8 @@
             android:background="@drawable/id_pw_txt"
             android:layout_marginRight="45dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginBottom="12.8dp" />
+            android:layout_marginBottom="12.8dp"
+            android:singleLine="true"/>
 
         <EditText
             android:id="@+id/signup_id_txt"
@@ -52,7 +53,8 @@
             android:background="@drawable/id_pw_txt"
             android:layout_marginRight="45dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginBottom="12.8dp" />
+            android:layout_marginBottom="12.8dp"
+            android:singleLine="true"/>
 
         <EditText
             android:id="@+id/signup_pw_txt"
@@ -65,7 +67,8 @@
             android:background="@drawable/id_pw_txt"
             android:layout_marginRight="45dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginBottom="12.8dp"/>
+            android:layout_marginBottom="12.8dp"
+            android:singleLine="true"/>
 
         <EditText
             android:id="@+id/signup_pw_ch_txt"
@@ -78,20 +81,21 @@
             android:background="@drawable/id_pw_txt"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
-            android:layout_marginBottom="55dp"/>
+            android:layout_marginBottom="55dp"
+            android:singleLine="true"/>
 
         <Button
             android:id="@+id/signup_btn"
             android:layout_width="290dp"
             android:layout_height="60dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/signin_btn"
+            android:fontFamily="@font/tmoneybold"
             android:text="Sign up"
             android:textColor="#FFFFFF"
-            android:layout_gravity="center"
-            android:textSize="25sp"
-            />
+            android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

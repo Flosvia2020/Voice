@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,20 @@ public class MainActivity extends AppCompatActivity {
         id_txt = (EditText)findViewById(R.id.signin_id_txt);
         pw_txt = (EditText)findViewById(R.id.signin_pw_txt);
 
+
+
+//        id_txt.setOnKeyListener(new View.OnKeyListener() {
+//            private int keyCode;
+//
+//            @Override
+//            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+//                if((keyEvent.getAction() == KeyEvent.ACTION_DOWN) && keyCode == KeyEvent.KEYCODE_ENTER){
+//                    pw_txt.requestFocus();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
         sign_in_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
