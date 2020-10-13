@@ -12,12 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="7"/>
-    <ImageView
-        android:id="@+id/signup_logo"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/vclg"
-        android:layout_weight="0" />
+        android:layout_gravity="center"
+        android:layout_weight="0"
+        android:fontFamily="@font/tmoneybold"
+        android:text="VOICE"
+        android:textColor="#01DFD7"
+        android:textSize="55sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
