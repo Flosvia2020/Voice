@@ -12,12 +12,13 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const LOGIN_URL = "/api/auth/login";
+
 const Login = ({ setCookie }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
   const callApi = (user) => {
-    const url = "/api/auth/login";
     const config = {
       method: "POST",
       headers: {
@@ -25,10 +26,11 @@ const Login = ({ setCookie }) => {
       },
     };
     client
-      .post(url, user, config)
+      .post(LOGIN_URL, user, config)
       .then((res) => {
         const { token } = res.data;
         setCookie("user", token);
+        console.log(token);
       })
       .catch((e) =>
         alert(
