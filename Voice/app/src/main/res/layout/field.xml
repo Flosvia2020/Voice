@@ -6,40 +6,67 @@
     android:orientation="vertical"
     android:background="#FFFFFF">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/tmoneybold"
-        android:gravity="center"
-        android:text="VOICE"
-        android:textColor="#01DFD7"
-        android:textSize="42sp"
-        android:background="@drawable/shadow"
-        android:layout_marginBottom="15dp"
-        android:elevation="12dp"/>
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-                <Button
-                    android:layout_width="300dp"
-                    android:layout_height="200dp"/>
-            </ScrollView>
-        </LinearLayout>
-
-
+            android:layout_gravity="center"
+            android:fontFamily="@font/tmoneybold"
+            android:gravity="center"
+            android:text="VOICE"
+            android:textColor="#01DFD7"
+            android:textSize="42sp"
+            android:background="@drawable/shadow"
+            android:layout_marginBottom="15dp"
+            android:elevation="12dp"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp" />
+                    <Button
+                        android:layout_width="300dp"
+                        android:layout_height="200dp" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp" />
+                    <Button
+                        android:layout_width="300dp"
+                        android:layout_height="200dp" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp" />
+                    <Button
+                        android:layout_width="300dp"
+                        android:layout_height="200dp" />
+                    <Button
+                        android:layout_width="300dp"
+                        android:layout_height="200dp" />
 
+                    </LinearLayout>
+                </ScrollView>
+            <ImageButton
+                android:id="@+id/field_pen_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/peenn"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/signin_btn"/>
+
+        </FrameLayout>
 
 
 </LinearLayout>
