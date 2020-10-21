@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Signup.class);
                 startActivity(intent);
-                finish();6t
+                finish();
             }
         });
     }
