@@ -1,4 +1,5 @@
 module.exports = {
     'secret': 'SeCrEtKeYfOrHaShInG',
-    'mongodbUri': 'mongodb://localhost/voice'
+    'mongodbUri': 'mongodb://localhost/voice',
+    'refreshSecret': 'vOiCeReFrEsHtOkEn'
 }

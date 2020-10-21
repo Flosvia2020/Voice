@@ -1,5 +1,6 @@
 const acount = require("../../../models/acount");
 const jwt = require("jsonwebtoken");
+const { use } = require(".");
 
 exports.register = (req, res) => {
   const { id, password, nickname } = req.body;
@@ -14,24 +15,7 @@ exports.register = (req, res) => {
   };
 
   const count = (user) => {
-    const secret = req.app.get("jwt-secret");
     newUser = user;
-    const p = jwt.sign(
-      {
-        _id: user._id,
-        id: user.id,
-        admin: user.admin,
-      },
-      secret,
-      {
-        expiresIn: "7d",
-        issuer: "voice.com",
-        subject: "userInfo",
-      }
-    );
-    res.json({
-      token: p,
-    });
     return acount.count({}).exec();
   };
 
@@ -45,7 +29,7 @@ exports.register = (req, res) => {
 
   const respond = (isAdmin) => {
     res.json({
-      message: "registered successfully",
+      message: "회원가입 성공",
       admin: isAdmin ? true : false,
     });
   };
@@ -94,17 +78,22 @@ exports.login = (req, res) => {
             }
           );
         });
-        return p;
+
+        return p.then((token) => {
+          const refresh = acount.login(user.id);
+          return { token, refresh };
+        });
       } else {
         throw new Error("로그인 실패");
       }
     }
   };
 
-  const respond = (token) => {
+  const respond = ({ token, refresh }) => {
     res.json({
       message: "로그인 성공",
       token,
+      refresh,
     });
   };
 
