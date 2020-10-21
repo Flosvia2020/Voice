@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, Field.class);
                     startActivity(intent);
                     Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
 
             }
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Signup.class);
                 startActivity(intent);
+                finish();6t
             }
         });
     }
