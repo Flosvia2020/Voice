@@ -1,5 +1,6 @@
 const acount = require("../../../models/acount");
 const jwt = require("jsonwebtoken");
+const { use } = require(".");
 
 exports.register = (req, res) => {
   const { id, password, nickname } = req.body;
@@ -14,7 +15,6 @@ exports.register = (req, res) => {
   };
 
   const count = (user) => {
-    const secret = req.app.get("jwt-secret");
     newUser = user;
     return acount.count({}).exec();
   };
@@ -29,7 +29,7 @@ exports.register = (req, res) => {
 
   const respond = (isAdmin) => {
     res.json({
-      message: "registered successfully",
+      message: "회원가입 성공",
       admin: isAdmin ? true : false,
     });
   };
@@ -84,8 +84,8 @@ exports.login = (req, res) => {
             } else {
                 throw new Error('로그인 실패')
             }
-        }
-    }
+          }
+      }
 
     const respond = ({token, refresh}) => {
         res.json({
