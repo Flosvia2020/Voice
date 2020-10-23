@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#01DFD7">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:fontFamily="@font/tmoneybold"
         android:gravity="center"
         android:text="VOICE"
-        android:textColor="#01DFD7"
-        android:textSize="75sp"
-        android:padding="1dp"/>
+        android:autoSizeTextType="uniform"
+        android:textColor="#FFFFFF"
+        android:layout_weight="1"/>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"/>
 </LinearLayout>
