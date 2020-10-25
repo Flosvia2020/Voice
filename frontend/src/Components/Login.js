@@ -28,9 +28,9 @@ const Login = ({ setCookie }) => {
     client
       .post(LOGIN_URL, user, config)
       .then((res) => {
-        const { token } = res.data;
+        const { token, refreshToken } = res.data;
         setCookie("user", token);
-        console.log(token);
+        console.log(refreshToken);
       })
       .catch((e) =>
         alert(
