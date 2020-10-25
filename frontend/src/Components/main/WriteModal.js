@@ -7,7 +7,7 @@ import {
   ContentInput,
   FileInput,
   SubmitButton,
-} from "../Style/WriteModal";
+} from "../../Style/WriteModal";
 const WriteModal = ({ visible, setVisible }) => {
   const [img, setImage] = useState(null);
   const [imgName, setImageName] = useState("");

@@ -1,5 +1,5 @@
 import React from "react";
-import { PostContainer, Detail } from "../Style/Main";
+import { PostContainer, Detail } from "../../Style/Main";
 const Post = ({ nickName, id, title, contents, img }) => {
   return (
     <PostContainer withImg={img !== ""}>

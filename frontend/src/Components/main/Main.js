@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import { HeaderContainer, WriteBtn, Posts, Container } from "../Style/Main";
+import { HeaderContainer, WriteBtn, Posts, Container } from "../../Style/Main";
 import Post from "./Post";
 import WriteModal from "./WriteModal";
 import dummy from "./dummy.json";
@@ -11,9 +10,10 @@ body{
   padding:0;
 }
 `;
-const Main = ({ setCookie }) => {
+const Main = () => {
   const [writeVisible, setWriteVisible] = useState(false);
   const posts = dummy.post;
+
   const onWriteClick = () => {
     setWriteVisible(true);
   };

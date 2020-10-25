@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import client from "../api/client";
+import client from "../../api/client";
 import {
   Logo,
   InputLabel,
@@ -7,8 +7,8 @@ import {
   RegularFont,
   PasswordComfirm,
   WarnningText,
-} from "../Style/Label";
-import { ColorButton } from "../Style/Button";
+} from "../../Style/Label";
+import { ColorButton } from "../../Style/Button";
 import styled from "styled-components";
 import { Link, Redirect } from "react-router-dom";
 import ReactTooltip from "react-tooltip";

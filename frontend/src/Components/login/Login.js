@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Logo, InputLabel, LinkText, RegularFont } from "../Style/Label";
-import { ColorButton } from "../Style/Button";
+import { Logo, InputLabel, LinkText, RegularFont } from "../../Style/Label";
+import { ColorButton } from "../../Style/Button";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import client from "../api/client";
-
+import client from "../../api/client";
+import { Cookies } from "react-cookie";
 const Container = styled.div`
   margin-top: 10%;
   display: flex;
@@ -14,11 +14,13 @@ const Container = styled.div`
 
 const LOGIN_URL = "/api/auth/login";
 
-const Login = ({ setCookie }) => {
+const Login = ({ state, beforeLogin, loading, loginSuccess, loginFail }) => {
+  const userToken = new Cookies();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
   const callApi = (user) => {
+    loading();
     const config = {
       method: "POST",
       headers: {
@@ -29,14 +31,16 @@ const Login = ({ setCookie }) => {
       .post(LOGIN_URL, user, config)
       .then((res) => {
         const { token, refreshToken } = res.data;
-        setCookie("user", token);
+        userToken.set("user", token);
         console.log(refreshToken);
+        loginSuccess();
       })
-      .catch((e) =>
+      .catch((e) => {
         alert(
           "로그인에 실패하였습니다. 아이디 혹은 비밀번호를 다시 확인해 주세요."
-        )
-      );
+        );
+        loginFail();
+      });
   };
   const onHandleSubmit = () => {
     if (id === "" || password === "") {
@@ -64,9 +68,14 @@ const Login = ({ setCookie }) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <ColorButton width="400px" height="50px" onClick={onHandleSubmit}>
-        LOG IN
-      </ColorButton>
+      {state === "nomal" ? (
+        <ColorButton width="400px" height="50px" onClick={onHandleSubmit}>
+          LOG IN
+        </ColorButton>
+      ) : (
+        <div></div>
+      )}
+
       <RegularFont> 아직 회원이 아니신가요?</RegularFont>
       <Link to="/Signup">
         <LinkText>SIGN UP하러가기</LinkText>
