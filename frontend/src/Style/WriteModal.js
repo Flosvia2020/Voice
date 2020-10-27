@@ -35,6 +35,11 @@ export const ModalWrapper = styled.div`
   }
 `;
 export const ModalInner = styled.div`
+  @font-face {
+    font-family: "TmoneyRoundWindExtraBold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
+      format("woff");
+  }
   box-sizing: border-box;
   position: fixed;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
@@ -52,11 +57,6 @@ export const ModalInner = styled.div`
 `;
 
 export const TitleInput = styled.input`
-  @font-face {
-    font-family: "TmoneyRoundWindExtraBold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
-      format("woff");
-  }
   font-family: "TmoneyRoundWindExtraBold";
   font-size: 2.2rem;
   width: 95%;
@@ -69,11 +69,6 @@ export const TitleInput = styled.input`
 `;
 
 export const ContentInput = styled.textarea`
-  @font-face {
-    font-family: "TmoneyRoundWindExtraBold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
-      format("woff");
-  }
   font-family: "TmoneyRoundWindExtraBold";
   resize: none;
   font-size: 1rem;
@@ -125,6 +120,9 @@ export const FileInput = styled.div`
   }
 `;
 export const SubmitButton = styled.button`
+  font-family: "TmoneyRoundWindExtraBold";
+  font-size: 1.5rem;
+  color: white;
   width: 15rem;
   height: 3rem;
   background-color: #00cdc8;

@@ -4,13 +4,13 @@ import { withCookies, Cookies } from "react-cookie";
 import LoginContainer from "./container/loginContainer";
 import Signup from "./Components/signup/Signup";
 import Main from "./Components/main/Main";
+
 const App = () => {
   const userToken = new Cookies();
   const [hasCookie, setHasCookie] = useState(false);
-
   useEffect(() => {
     setHasCookie(
-      userToken.get("user") !== "" && userToken.get("user") !== undefined
+      userToken.get("token") !== "" && userToken.get("token") !== undefined
     );
   }, []);
   return (

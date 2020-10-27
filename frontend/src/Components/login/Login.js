@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Logo, InputLabel, LinkText, RegularFont } from "../../Style/Label";
 import { ColorButton } from "../../Style/Button";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import client from "../../api/client";
 import { Cookies } from "react-cookie";
+import CircularProgress from "@material-ui/core/CircularProgress";
 const Container = styled.div`
   margin-top: 10%;
   display: flex;
@@ -19,26 +20,23 @@ const Login = ({ state, beforeLogin, loading, loginSuccess, loginFail }) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    beforeLogin();
+  }, []);
+
   const callApi = (user) => {
     loading();
-    const config = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+
     client
-      .post(LOGIN_URL, user, config)
+      .post(LOGIN_URL, user)
       .then((res) => {
         const { token, refreshToken } = res.data;
-        userToken.set("user", token);
-        console.log(refreshToken);
+        userToken.set("token", token);
+        userToken.set("refreshToken", refreshToken);
         loginSuccess();
       })
       .catch((e) => {
-        alert(
-          "로그인에 실패하였습니다. 아이디 혹은 비밀번호를 다시 확인해 주세요."
-        );
+        alert("아이디 혹은 비밀번호를 다시 확인해 주세요");
         loginFail();
       });
   };
@@ -56,6 +54,7 @@ const Login = ({ state, beforeLogin, loading, loginSuccess, loginFail }) => {
 
   return (
     <Container>
+      {state === "success" && <Redirect to="/Main" />}
       <Logo>VOICE</Logo>
       <InputLabel
         placeholder="ID"
@@ -73,7 +72,7 @@ const Login = ({ state, beforeLogin, loading, loginSuccess, loginFail }) => {
           LOG IN
         </ColorButton>
       ) : (
-        <div></div>
+        <CircularProgress style={{ margin: "2rem 0", color: "#00cdc8" }} />
       )}
 
       <RegularFont> 아직 회원이 아니신가요?</RegularFont>

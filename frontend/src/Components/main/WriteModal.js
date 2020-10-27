@@ -8,6 +8,10 @@ import {
   FileInput,
   SubmitButton,
 } from "../../Style/WriteModal";
+import client from "../../api/client";
+import { Cookies } from "react-cookie";
+const URL = "api/post/upload";
+const token = new Cookies().get("token");
 const WriteModal = ({ visible, setVisible }) => {
   const [img, setImage] = useState(null);
   const [imgName, setImageName] = useState("");
@@ -15,6 +19,22 @@ const WriteModal = ({ visible, setVisible }) => {
   const handleChange = (e) => {
     setImage(e.target.files[0]);
     setImageName(e.target.value);
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    client
+      .post(
+        URL,
+        {},
+        {
+          Headers: {
+            "access-token": token,
+          },
+        }
+      )
+      .get()
+      .catch((err) => alert);
+    setVisible(false);
   };
   return (
     <>
@@ -41,7 +61,9 @@ const WriteModal = ({ visible, setVisible }) => {
               <input className="upload" value={imgName} />
             </div>
 
-            <SubmitButton />
+            <SubmitButton type="submit" onClick={onSubmit}>
+              게시하기
+            </SubmitButton>
           </FileInput>
         </ModalInner>
       </ModalWrapper>
