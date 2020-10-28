@@ -1,10 +1,5 @@
 import styled from "styled-components";
 export const ColorButton = styled.div`
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
   @font-face {
     font-family: "TmoneyRoundWindExtraBold";
     src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
