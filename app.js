@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 
 app.use(morgan('dev'))
 
-app.use(cors({ origin: 'https://www.zerocho.com' }))
+app.use(cors())
 
 app.set('jwt-secret', config.secret)
 
