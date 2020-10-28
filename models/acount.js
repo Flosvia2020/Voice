@@ -6,9 +6,7 @@ const config = require('../config')
 var acountSchema = new Schema({
     id: String,
     password: String,
-    nickname: String,
-    refreshToken: String,
-    expired_at: Date
+    nickname: String
 })
 
 acountSchema.statics.create = function(id, password, nickname) {
@@ -19,12 +17,16 @@ acountSchema.statics.create = function(id, password, nickname) {
     const acount = new this({
         id,
         password: encrypted,
-        nickname,
-        refreshToken: '',
-        expired_at: ''
+        nickname
     })
 
     return acount.save()
+}
+
+acountSchema.statics.findOneByUsername = function(id) {
+    return this.findOne({
+        id
+    }).exec()
 }
 
 acountSchema.statics.login = function(id) {
@@ -35,12 +37,6 @@ acountSchema.statics.login = function(id) {
     date.setDate(date.getDate() + 1)
     this.findOneAndUpdate({ id }, { refreshToken: refresh, expired_at: date }).exec()
     return refresh
-}
-
-acountSchema.statics.findOneByUsername = function(id) {
-    return this.findOne({
-        id
-    }).exec()
 }
 
 acountSchema.methods.verify = function(password) {

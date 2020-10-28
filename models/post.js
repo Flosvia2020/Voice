@@ -2,7 +2,6 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var commentSchema = new Schema({
-    Id: Number,
     name: String,
     body: String,
     order: Number,
@@ -14,7 +13,7 @@ var commentSchema = new Schema({
 
 var postSchema = new Schema({
     id: Number,
-    name: String,
+    name: String,   
     title: String,
     body: String,
     postDate: {
@@ -23,5 +22,27 @@ var postSchema = new Schema({
     },
     comments: [commentSchema]
 })
+
+postSchema.statics.create = function(id, name, title, body) {
+    const post = new this({
+        id,
+        name,
+        title,
+        body
+    })
+    
+    return post.save()
+}
+
+postSchema.statics.addComment = function(i, name, body) {
+    return this.findOneAndUpdate({id: i}, {
+        $push: {
+            comments: {
+                name,
+                body
+            }
+        }
+    })
+}
 
 module.exports = mongoose.model("post", postSchema)
