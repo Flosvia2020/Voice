@@ -22,7 +22,7 @@ const check_spc = /[~!@#$%^&*()_+|<>?:{}]/;
 const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 const SIGNUP_URL = "/api/auth/register";
 
-const Signup = () => {
+const Signup = ({ signupSuccess, signupLoading, signupFail }) => {
   const [nickName, setNickName] = useState("");
   const [id, setId] = useState("");
   const [password, setPassWord] = useState("");

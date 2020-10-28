@@ -24,7 +24,7 @@ const LoginContainer = ({
   ></Login>
 );
 
-export default connect((state) => ({ state: state.loginReducer.state }), {
+export default connect((state) => ({ state: state.loginReducer }), {
   beforeLogin,
   loading,
   loginSuccess,

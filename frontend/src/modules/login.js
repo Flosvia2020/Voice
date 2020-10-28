@@ -11,15 +11,19 @@ export const loginSuccess = createAction(LOGIN_SUCCESS);
 export const loginFail = createAction(LOGIN_FAIL);
 
 const initalState = {
-  state: "nomal",
+  isSuccess: false,
+  isLoading: false,
 };
 
 const loginReducer = handleActions(
   {
-    [LOGIN]: (state, action) => ({ state: "nomal" }),
-    [LOGIN_LOADING]: (state, action) => ({ state: "loading" }),
-    [LOGIN_SUCCESS]: (state, action) => ({ state: "success" }),
-    [LOGIN_FAIL]: (state, action) => ({ state: "nomal" }),
+    [LOGIN]: (state, action) => ({ isSuccess: false, isLoading: false }),
+    [LOGIN_LOADING]: (state, action) => ({ isLoading: true }),
+    [LOGIN_SUCCESS]: (state, action) => ({
+      isSuccess: true,
+      isLoading: false,
+    }),
+    [LOGIN_FAIL]: (state, action) => ({ isSuccess: false, isLoading: false }),
   },
   initalState
 );

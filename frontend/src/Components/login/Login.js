@@ -51,10 +51,9 @@ const Login = ({ state, beforeLogin, loading, loginSuccess, loginFail }) => {
     };
     callApi(user);
   };
-
   return (
     <Container>
-      {state === "success" && <Redirect to="/Main" />}
+      {state.isSuccess && <Redirect to="/Main" />}
       <Logo>VOICE</Logo>
       <InputLabel
         placeholder="ID"
@@ -67,7 +66,7 @@ const Login = ({ state, beforeLogin, loading, loginSuccess, loginFail }) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      {state === "nomal" ? (
+      {!state.isLoading ? (
         <ColorButton width="400px" height="50px" onClick={onHandleSubmit}>
           LOG IN
         </ColorButton>
