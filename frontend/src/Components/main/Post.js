@@ -7,7 +7,7 @@ const Post = ({ nickName, id, title, contents, img }) => {
         {nickName}({id})
       </p>
       <p className="title">{title}</p>
-      <img src={img} />
+      <img />
       <div className="context">{contents}</div>
       <Detail>자세히보기</Detail>
     </PostContainer>

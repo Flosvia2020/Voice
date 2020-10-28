@@ -24,12 +24,12 @@ const Main = () => {
   const cookie = new Cookies();
   const EXP = jwt_decode(cookie.get("token")).exp;
 
-  if (console.log(EXP * 1000 < Date.now())) {
+  if (EXP * 1000 < Date.now()) {
     cookie.remove("token");
     client
       .get(CHECK_URL, {
         Headers: {
-          "access-token": "",
+          "access-token": cookie.get("token"),
           "refresh-token": cookie.get("refreshToken"),
         },
       })
