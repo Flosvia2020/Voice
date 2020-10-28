@@ -40,8 +40,7 @@ exports.register = (req, res) => {
     });
   };
 
-  acount
-    .findOneByUsername(id)
+  acount.findOneByUsername(id)
     .then(create)
     .then(count)
     .then(assign)
