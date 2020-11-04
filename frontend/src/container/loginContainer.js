@@ -1,32 +1,27 @@
 import React from "react";
 import Login from "../Components/login/Login";
 import { connect } from "react-redux";
-import {
-  beforeLogin,
-  loading,
-  loginSuccess,
-  loginFail,
-} from "../modules/login";
-
-const LoginContainer = ({
-  state,
-  beforeLogin,
-  loading,
-  loginSuccess,
-  loginFail,
-}) => (
+const LoginContainer = ({ isLoading, token, refreshToken, loginRequest }) => (
   <Login
-    state={state}
-    beforeLogin={beforeLogin}
-    loading={loading}
-    loginSuccess={loginSuccess}
-    loginFail={loginFail}
+    isLoading={isLoading}
+    token={token}
+    refreshToken={refreshToken}
+    loginRequest={loginRequest}
   ></Login>
 );
 
-export default connect((state) => ({ state: state.loginReducer }), {
-  beforeLogin,
-  loading,
-  loginSuccess,
-  loginFail,
-})(LoginContainer);
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.loginReducer.isLoading,
+    token: state.loginReducer.token,
+    refreshToken: state.loginReducer.refreshToken,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginRequest: (data) => dispatch({ type: "LOGIN_REQUEST", data }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

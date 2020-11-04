@@ -19,6 +19,7 @@ const WriteModal = ({ visible, setVisible }) => {
   const handleChange = (e) => {
     setImage(e.target.files[0]);
     setImageName(e.target.value);
+    console.log(e.target.files[0]);
   };
   const onSubmit = (e) => {
     e.preventDefault();
