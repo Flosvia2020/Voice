@@ -21,3 +21,20 @@ export const ColorButton = styled.div`
     background-color: #06a191;
   }
 `;
+
+export const TransparentButton = styled.button`
+  @font-face {
+    font-family: "TmoneyRoundWindRegular";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  font-family: "TmoneyRoundWindRegular";
+  background-color: white;
+  color: ${(prop) => prop.color};
+  outline: none;
+  border: none;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+`;

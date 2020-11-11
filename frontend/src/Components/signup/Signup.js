@@ -10,8 +10,12 @@ import {
 } from "../../Style/Label";
 import { ColorButton } from "../../Style/Button";
 import styled from "styled-components";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
+import { authActions } from "../../modules/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress } from "@material-ui/core";
+
 const Container = styled.div`
   margin-top: 5%;
   display: flex;
@@ -20,31 +24,29 @@ const Container = styled.div`
 `;
 const check_spc = /[~!@#$%^&*()_+|<>?:{}]/;
 const check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-const SIGNUP_URL = "/api/auth/register";
 
-const Signup = ({ signupSuccess, signupLoading, signupFail }) => {
+const Signup = () => {
   const [nickName, setNickName] = useState("");
   const [id, setId] = useState("");
   const [password, setPassWord] = useState("");
   const [isValid, setIsValid] = useState(true);
-  const [success, setSuccess] = useState(false);
+
+  const history = useHistory();
+  const isLoading = useSelector((store) => store.authReducer.isLoading);
+  const dispatch = useDispatch();
+
   const callApi = (user) => {
-    const url = SIGNUP_URL;
-    const config = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    dispatch(authActions.request());
     client
-      .post(url, user, config)
-      .then(() => {
-        setSuccess(true);
-        console.log("success");
+      .post("/api/auth/register", user)
+      .then((res) => {
+        dispatch(authActions.success());
+        history.push({ pathname: "/login" });
       })
-      .catch((e) => {
-        alert("이미 사용중인 아이디입니다");
-        setSuccess(false);
+      .catch((error) => {
+        dispatch(authActions.fail());
+        const { message } = error.response.data;
+        alert(message);
       });
   };
 
@@ -65,7 +67,7 @@ const Signup = ({ signupSuccess, signupLoading, signupFail }) => {
       password: password,
       nickname: nickName,
     };
-    console.log(user);
+
     callApi(user);
   };
 
@@ -75,7 +77,6 @@ const Signup = ({ signupSuccess, signupLoading, signupFail }) => {
 
   return (
     <div>
-      {success ? <Redirect to="/Login" /> : ""}
       <Container>
         <Logo>회원가입</Logo>
         <InputLabel
@@ -133,9 +134,13 @@ const Signup = ({ signupSuccess, signupLoading, signupFail }) => {
         <WarnningText>
           {isValid ? "" : "비밀번호가 일치하지 않습니다"}
         </WarnningText>
-        <ColorButton width="400px" height="50px" onClick={onHandleSubmit}>
-          SIGN UP
-        </ColorButton>
+        {isLoading ? (
+          <CircularProgress style={{ color: "#00cdc8", margin: "1rem 0" }} />
+        ) : (
+          <ColorButton width="400px" height="50px" onClick={onHandleSubmit}>
+            SIGN UP
+          </ColorButton>
+        )}
 
         <RegularFont>이미 회원이신가요?</RegularFont>
         <Link to="/Login">

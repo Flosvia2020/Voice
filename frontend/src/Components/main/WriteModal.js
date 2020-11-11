@@ -8,45 +8,50 @@ import {
   FileInput,
   SubmitButton,
 } from "../../Style/WriteModal";
-import client from "../../api/client";
-import { Cookies } from "react-cookie";
-const URL = "api/post/upload";
-const token = new Cookies().get("token");
+import { postActions } from "../../modules/post";
+import { useDispatch } from "react-redux";
+
 const WriteModal = ({ visible, setVisible }) => {
-  const [img, setImage] = useState(null);
-  const [imgName, setImageName] = useState("");
+  const [image, setImage] = useState();
+  const [imgName, setImageName] = useState();
+  const [title, setTitle] = useState();
+  const [contents, setContents] = useState();
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setImage(e.target.files[0]);
     setImageName(e.target.value);
-    console.log(e.target.files[0]);
   };
   const onSubmit = (e) => {
+    if (title === null || contents === null) {
+      alert("내용을 입력해주세요");
+    }
+
     e.preventDefault();
-    client
-      .post(
-        URL,
-        {},
-        {
-          Headers: {
-            "access-token": token,
-          },
-        }
-      )
-      .get()
-      .catch((err) => alert);
+    const postData = new FormData();
+    postData.append("title", title);
+    postData.append("contents", contents);
+    postData.append("img", image);
+
+    dispatch(postActions.creaetPost(postData));
     setVisible(false);
+    for (var pair of postData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
   };
   return (
     <>
-      <ModalOveraly visible={visible} />
-      <ModalWrapper visible={visible}>
-        <button className="close" onClick={() => setVisible(false)}>
-          x
-        </button>
+      <ModalOveraly visible={visible} onClick={() => setVisible(false)}>
         <ModalInner>
-          <TitleInput />
-          <ContentInput />
+          <TitleInput
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <ContentInput
+            value={contents}
+            onChange={(e) => setContents(e.target.value)}
+          />
           <FileInput>
             <div>
               <label htmlFor="file">
@@ -57,7 +62,7 @@ const WriteModal = ({ visible, setVisible }) => {
                 id="file"
                 onChange={handleChange}
                 value={imgName}
-                files={img}
+                files={image}
               />
               <input className="upload" value={imgName} />
             </div>
@@ -67,7 +72,7 @@ const WriteModal = ({ visible, setVisible }) => {
             </SubmitButton>
           </FileInput>
         </ModalInner>
-      </ModalWrapper>
+      </ModalOveraly>
     </>
   );
 };

@@ -11,29 +11,7 @@ export const ModalOveraly = styled.div`
   left: 0;
   bottom: 0;
 `;
-export const ModalWrapper = styled.div`
-  box-sizing: border-box;
-  display: ${({ visible }) => (visible ? "block" : "none")};
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  overflow: auto;
-  outline: 0;
-  .close {
-    font-size: 3rem;
-    float: right;
-    background-color: rgba(0, 0, 0, 0);
-    color: white;
-    border: none;
-    &:focus,
-    &:active {
-      outline: none;
-    }
-  }
-`;
+
 export const ModalInner = styled.div`
   @font-face {
     font-family: "TmoneyRoundWindExtraBold";
