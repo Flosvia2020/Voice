@@ -7,7 +7,7 @@ import {
   ContentInput,
   FileInput,
   SubmitButton,
-} from "../../Style/WriteModal";
+} from "../../Style/Modal";
 import { postActions } from "../../modules/post";
 import { useDispatch } from "react-redux";
 
@@ -36,9 +36,6 @@ const WriteModal = ({ visible, setVisible }) => {
 
     dispatch(postActions.creaetPost(postData));
     setVisible(false);
-    for (var pair of postData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
   };
   return (
     <>

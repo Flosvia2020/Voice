@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ModalOveraly, ModalWrapper, ModalInner } from "../../Style/WriteModal";
+import { ModalOveraly, ModalWrapper, ModalInner } from "../../Style/Modal";
 import client from "../../api/client";
 
 const PostModal = ({}) => {
