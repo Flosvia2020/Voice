@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
-import { ModalOveraly, ModalWrapper, ModalInner } from "../../Style/Modal";
-import client from "../../api/client";
+import { ModalOveraly, ModalInner, ImageContainer } from "../../Style/Modal";
+import { useSelector } from "react-redux";
 
-const PostModal = ({}) => {
+const PostModal = ({ visible, setVisible }) => {
+  const postData = useSelector((state) => state.postReducer.postData);
   return (
     <>
-      <ModalOveraly>
-        <ModalInner></ModalInner>
+      <ModalOveraly visible={visible} onClick={() => setVisible(false)}>
+        <ModalInner>
+          <ImageContainer />
+        </ModalInner>
       </ModalOveraly>
     </>
   );

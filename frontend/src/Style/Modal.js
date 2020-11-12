@@ -107,3 +107,29 @@ export const SubmitButton = styled.button`
   outline: none;
   border: none;
 `;
+
+export const ImageContainer = styled.img`
+  width: 100%;
+`;
+
+export const PostModal = styled.div`
+  @font-face {
+    font-family: "TmoneyRoundWindExtraBold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
+      format("woff");
+  }
+  box-sizing: border-box;
+  position: fixed;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100rem;
+  min-height: 35rem;
+  top: 60px;
+  margin: 0 22%;
+  padding: 4rem 3rem;
+  @media screen and (max-width: 1000px) {
+    margin: 0;
+    width: 30rem;
+  }
+`;

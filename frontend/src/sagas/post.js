@@ -1,18 +1,17 @@
 import { put, takeEvery, all, call } from "redux-saga/effects";
-import { postTypes } from "../modules/post";
+import { postTypes, postActions } from "../modules/post";
 import client from "../api/client";
 
 function* loadPostList() {
   const res = yield client.get("/api/post/list");
-  yield put({ type: postTypes.LOAD_SUCCESS, postList: res.data });
+  yield put(postActions.loadSuccess(res.data));
 }
 function* loadPost(action) {
-  yield client
-    .get(`/api/post/${action.postId}`)
-    .then((res) =>
-      put({ type: postTypes.LOAD_POST_SUCCESS, postData: res.data })
-    );
+  console.log(action.postId);
+  const postData = yield client.get(`/api/post/list/${action.postId}`).data;
+  yield put(postActions.loadPostSuccess(postData));
 }
+
 function* createPost(action) {
   const config = {
     headers: {

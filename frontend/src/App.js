@@ -15,7 +15,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        {localStorage.getItem("accessToken") === undefined ? (
+        {localStorage.getItem("accessToken") == null ? (
           <Redirect to="/login" />
         ) : (
           <Redirect to="/Main" />

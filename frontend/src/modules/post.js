@@ -5,12 +5,14 @@ const LOAD_POST_SUCCESS = "LOAD_POST_SUCCESS";
 const CREATE_POST = "CREATE_POST";
 const EDIT_POST = "EDIT_POST";
 const DELETE_POST = "DELETE_POST";
+
 const loadRequest = () => ({ type: LOAD_REQUEST });
-const loadSuccess = () => ({ type: LOAD_SUCCESS });
+const loadSuccess = (postList) => ({ type: LOAD_SUCCESS, postList });
 const creaetPost = (postData) => ({ type: CREATE_POST, postData });
 const eidtPost = (postData) => ({ type: EDIT_POST, postData });
 const deletePost = (postId) => ({ type: DELETE_POST, postId });
 const loadPost = (postId) => ({ type: LOAD_POST, postId });
+const loadPostSuccess = (postData) => ({ type: LOAD_POST_SUCCESS, postData });
 
 const initalState = {
   postList: [],
@@ -23,11 +25,13 @@ const postReducer = (state = initalState, action) => {
     case LOAD_REQUEST:
       return { ...state, isLoading: true };
     case LOAD_SUCCESS:
-      return { postList: action.postList, isLoading: true };
+      return { ...state, postList: action.postList, isLoading: true };
     case CREATE_POST:
       return state;
-    case LOAD_POST:
-      return { ...state, postData: action.postData };
+    case LOAD_POST_SUCCESS:
+      console.log("loadSuccess");
+      console.log(action.postData);
+      return { ...state, postData: action.postData, isLoading: false };
     case EDIT_POST:
       return state;
     case DELETE_POST:
@@ -44,6 +48,7 @@ export const postActions = {
   eidtPost,
   deletePost,
   loadPost,
+  loadPostSuccess,
 };
 export const postTypes = {
   LOAD_REQUEST,

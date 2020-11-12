@@ -1,7 +1,7 @@
 # VOICE
 <div style="text-align: right"> 작성자 : 이지윤</div>
 
-___
+
 ## 목차
 
 >1. 개요
@@ -12,7 +12,7 @@ ___
 >> 협업 툴
 >3. 기능 설명
 >4. 타 서비스와의 차이점
-___
+
 ## 1. 개요
 ### 프로젝트 설명
     "voice"는 목소리 재능 기부 서비스로 사용자는 원하는 문장을 읽어 달라 요청하거나 
@@ -21,6 +21,28 @@ ___
     주요 타깃으로 삼았다.
 
 ### 프로젝트 계획 이유
-    이전에 전문 성우가 돈을 받고 원하는 캐릭터를 연기해주는 서비스를 본 적이 있었다.
-___
+    a
+
+## 2. 기술 스택
+
+### 개발
+#### Web Frontend
+React.js
+VSC
+
+#### BackEnd
+Node.js
+VSC
+MongoDB
+#### Android
+JAVA
+Android Studio
+
+## 협업
+git
+* github
+* gitkraken
+  
+notion
+slack
 
