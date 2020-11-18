@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
-  @font-face {
-    font-family: "TmoneyRoundWindExtraBold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
-      format("woff");
-  }
   font-family: "TmoneyRoundWindExtraBold";
   width: 100%;
   height: 5rem;

@@ -7,9 +7,10 @@ function* loadPostList() {
   yield put(postActions.loadSuccess(res.data));
 }
 function* loadPost(action) {
-  console.log(action.postId);
-  const postData = yield client.get(`/api/post/list/${action.postId}`).data;
-  yield put(postActions.loadPostSuccess(postData));
+  const postData = yield client
+    .get(`/api/post/list/${action.postId}`)
+    .catch(console.log);
+  yield put(postActions.loadPostSuccess(postData.data));
 }
 
 function* createPost(action) {
@@ -24,6 +25,10 @@ function* createPost(action) {
     .post("/api/post/upload", action.postData, config)
     .then(put({ type: postTypes.LOAD_REQUEST }))
     .catch((err) => alert(err.respones.data));
+}
+
+function* deletePost(action) {
+  yield client.delete(`/api/post/erase/`);
 }
 
 function* watchLoadPosts() {

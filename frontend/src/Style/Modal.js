@@ -1,3 +1,4 @@
+import { emphasize } from "@material-ui/core";
 import styled from "styled-components";
 
 export const ModalOveraly = styled.div`
@@ -12,12 +13,17 @@ export const ModalOveraly = styled.div`
   bottom: 0;
 `;
 
-export const ModalInner = styled.div`
-  @font-face {
-    font-family: "TmoneyRoundWindExtraBold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
-      format("woff");
-  }
+export const ModalBackground = styled.div`
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+`;
+
+export const WriteContainer = styled.div`
   box-sizing: border-box;
   position: fixed;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
@@ -28,6 +34,8 @@ export const ModalInner = styled.div`
   top: 60px;
   margin: 0 22%;
   padding: 4rem 3rem;
+  z-index: 999;
+
   @media screen and (max-width: 1000px) {
     margin: 0;
     width: 30rem;
@@ -112,24 +120,88 @@ export const ImageContainer = styled.img`
   width: 100%;
 `;
 
-export const PostModal = styled.div`
-  @font-face {
-    font-family: "TmoneyRoundWindExtraBold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
-      format("woff");
-  }
+export const PostContainer = styled.div`
+  max-height: 700px;
   box-sizing: border-box;
-  position: fixed;
+  position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 100rem;
-  min-height: 35rem;
+  width: 40rem;
   top: 60px;
-  margin: 0 22%;
+  margin: 0 30%;
   padding: 4rem 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  z-index: 999;
+
+  text-align: left;
   @media screen and (max-width: 1000px) {
     margin: 0;
     width: 30rem;
+  }
+`;
+
+export const WriterData = styled.div`
+  font-family: "TmoneyRoundWindExtraBold";
+  position: absolute;
+  color: white;
+  left: 5px;
+  top: -2rem;
+
+  font-size: 1.5rem;
+`;
+export const Container = styled.div`
+  overflow-y: scroll;
+
+  width: 100%;
+  height: 100%;
+`;
+export const PostTitle = styled.div`
+  font-family: "TmoneyRoundWindExtraBold";
+  font-size: 2rem;
+  width: 100%;
+  margin: 1rem 0;
+`;
+export const PostContent = styled.div`
+  font-family: "TmoneyRoundWindRegular";
+  font-size: 1.5rem;
+  width: 100%;
+  overflow-wrap: anywhere;
+`;
+
+export const RepleInput = styled.div`
+  margin-top: 3rem;
+  padding-top: 10px;
+  width: 540px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    width: 20rem;
+    height: 2rem;
+    padding: 0 1rem;
+    outline: none;
+    border: none;
+
+    background-color: #dcdcdc;
+  }
+  input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  label {
+    font-size: 2rem;
   }
 `;

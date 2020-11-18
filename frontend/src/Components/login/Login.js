@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Logo, InputLabel, LinkText, RegularFont } from "../../Style/Label";
+import { Logo, InputLabel, LinkText } from "../../Style/Label";
 import { ColorButton } from "../../Style/Button";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
@@ -77,7 +77,9 @@ const Login = () => {
         </ColorButton>
       )}
 
-      <RegularFont> 아직 회원이 아니신가요?</RegularFont>
+      <div style={{ fontFamily: "TmoneyRoundWindRegular" }}>
+        아직 회원이 아니신가요?
+      </div>
       <Link to="/Signup">
         <LinkText>SIGN UP하러가기</LinkText>
       </Link>

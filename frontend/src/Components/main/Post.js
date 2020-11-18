@@ -3,6 +3,7 @@ import { PostContainer, Detail } from "../../Style/Main";
 import { TransparentButton } from "../../Style/Button";
 import { postActions } from "../../modules/post";
 import { useDispatch } from "react-redux";
+
 const Post = ({
   nickName,
   userId,
@@ -18,6 +19,9 @@ const Post = ({
     dispatch(postActions.loadPost(postId));
     setPostVisible(true);
   };
+  const deletePost = () => {
+    dispatch(postActions.deletePost(postId));
+  };
 
   return (
     <PostContainer withImg={img !== undefined}>
@@ -30,7 +34,9 @@ const Post = ({
       <Detail onClick={(e) => showDetail()}>자세히보기</Detail>
       {isMyPost && (
         <>
-          <TransparentButton color="red">삭제</TransparentButton>
+          <TransparentButton color="red" onClick={deletePost}>
+            삭제
+          </TransparentButton>
           <TransparentButton>수정</TransparentButton>
         </>
       )}

@@ -4,7 +4,6 @@ import {
   Logo,
   InputLabel,
   LinkText,
-  RegularFont,
   PasswordComfirm,
   WarnningText,
 } from "../../Style/Label";
@@ -142,7 +141,9 @@ const Signup = () => {
           </ColorButton>
         )}
 
-        <RegularFont>이미 회원이신가요?</RegularFont>
+        <div style={{ fontFamily: "TmoneyRoundWindRegular" }}>
+          이미 회원이신가요?
+        </div>
         <Link to="/Login">
           <LinkText>LOG IN하러가기</LinkText>
         </Link>

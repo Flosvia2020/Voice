@@ -1,24 +1,7 @@
 import styled from "styled-components";
 
-const BoldFont = styled.div`
-  @font-face {
-    font-family: "TmoneyRoundWindExtraBold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
-      format("woff");
-  }
+export const Logo = styled.div`
   font-family: "TmoneyRoundWindExtraBold";
-`;
-export const RegularFont = styled.div`
-  @font-face {
-    font-family: "TmoneyRoundWindRegular";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff")
-      format("woff");
-    font-weight: normal;
-    font-style: normal;
-  }
-  font-family: "TmoneyRoundWindRegular";
-`;
-export const Logo = styled(BoldFont)`
   width: 100%;
   font-size: 50px;
   text-align: center;
@@ -34,14 +17,7 @@ export const Logo = styled(BoldFont)`
   cursor: default;
 `;
 export const InputLabel = styled.input`
-  @font-face {
-    font-family: "TmoneyRoundWindRegular";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff")
-      format("woff");
-    font-weight: normal;
-    font-style: normal;
-  }
-  font-family: "TmoneyRoundWindExtraBold";
+  font-family: "TmoneyRoundWindRegular";
   font-size: 15px;
   width: 400px;
   margin: 5px 0;
@@ -56,7 +32,8 @@ export const InputLabel = styled.input`
   }
 `;
 
-export const LinkText = styled(BoldFont)`
+export const LinkText = styled.div`
+  font-family: "TmoneyRoundWindExtraBold";
   color: #00cdc8;
   text-decoration: underline;
   cursor: pointer;

@@ -25,12 +25,10 @@ const postReducer = (state = initalState, action) => {
     case LOAD_REQUEST:
       return { ...state, isLoading: true };
     case LOAD_SUCCESS:
-      return { ...state, postList: action.postList, isLoading: true };
+      return { ...state, postList: action.postList, isLoading: false };
     case CREATE_POST:
       return state;
     case LOAD_POST_SUCCESS:
-      console.log("loadSuccess");
-      console.log(action.postData);
       return { ...state, postData: action.postData, isLoading: false };
     case EDIT_POST:
       return state;

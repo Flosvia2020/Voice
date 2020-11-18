@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import {
   ModalOveraly,
-  ModalWrapper,
-  ModalInner,
+  ModalBackground,
+  WriteContainer,
   TitleInput,
   ContentInput,
   FileInput,
@@ -39,8 +39,9 @@ const WriteModal = ({ visible, setVisible }) => {
   };
   return (
     <>
-      <ModalOveraly visible={visible} onClick={() => setVisible(false)}>
-        <ModalInner>
+      <ModalOveraly visible={visible}>
+        <ModalBackground onClick={(e) => setVisible(false)} />
+        <WriteContainer>
           <TitleInput
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -57,6 +58,7 @@ const WriteModal = ({ visible, setVisible }) => {
               <input
                 type="file"
                 id="file"
+                accept="image/*"
                 onChange={handleChange}
                 value={imgName}
                 files={image}
@@ -68,7 +70,7 @@ const WriteModal = ({ visible, setVisible }) => {
               게시하기
             </SubmitButton>
           </FileInput>
-        </ModalInner>
+        </WriteContainer>
       </ModalOveraly>
     </>
   );

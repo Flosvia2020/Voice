@@ -7,6 +7,7 @@ import WriteModal from "./WriteModal";
 import PostModal from "./PostModal";
 import { postActions } from "../../modules/post";
 import jwt_decode from "jwt-decode";
+import CircularProgress from "@material-ui/core/CircularProgress";
 const GlobalStyle = createGlobalStyle`
 body{
   margin:0;
@@ -21,6 +22,10 @@ const Main = () => {
   const [userData, setUserData] = useState(
     useSelector((state) => state.authReducer.userData)
   );
+  const [postData, setPostData] = useState();
+
+  const isLoading = useSelector((state) => state.postReducer.isLoading);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(postActions.loadRequest());
@@ -43,20 +48,25 @@ const Main = () => {
       <PostModal visible={postVisible} setVisible={setPostVisible} />
       <WriteModal visible={writeVisible} setVisible={setWriteVisible} />
       <Container>
-        <Posts>
-          {postList.map((e, i) => (
-            <Post
-              key={i}
-              postId={e._id}
-              userId={e.id}
-              title={e.title}
-              nickName={e.name}
-              contents={e.body}
-              isMyPost={e.id == userData}
-              setPostVisible={setPostVisible}
-            />
-          ))}
-        </Posts>
+        {isLoading ? (
+          <CircularProgress style={{ color: "#00cdc8", margin: "1rem 0" }} />
+        ) : (
+          <Posts>
+            {postList.map((e, i) => (
+              <Post
+                key={i}
+                postId={e.id}
+                userId={userData}
+                title={e.title}
+                nickName={e.name}
+                contents={e.body}
+                isMyPost={true}
+                setPostVisible={setPostVisible}
+              />
+            ))}
+          </Posts>
+        )}
+
         <WriteBtn onClick={onWriteClick}></WriteBtn>
       </Container>
     </div>
