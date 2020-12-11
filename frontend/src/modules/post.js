@@ -18,6 +18,7 @@ const initalState = {
   postList: [],
   postData: "",
   isLoading: false,
+  repleLoading: false,
 };
 
 const postReducer = (state = initalState, action) => {
@@ -25,15 +26,13 @@ const postReducer = (state = initalState, action) => {
     case LOAD_REQUEST:
       return { ...state, isLoading: true };
     case LOAD_SUCCESS:
-      return { ...state, postList: action.postList, isLoading: false };
-    case CREATE_POST:
-      return state;
+      return {
+        ...state,
+        postList: action.postList.reverse(),
+        isLoading: false,
+      };
     case LOAD_POST_SUCCESS:
       return { ...state, postData: action.postData, isLoading: false };
-    case EDIT_POST:
-      return state;
-    case DELETE_POST:
-      return state;
     default:
       return state;
   }

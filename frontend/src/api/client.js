@@ -4,7 +4,7 @@ const client = axios.create({
   baseURL: "http://dsm-voice.herokuapp.com",
   headers: {
     "Content-Type": "application/json",
-    //"access-token": localStorage.getItem("accessToken"),
+    "access-token": localStorage.getItem("accessToken"),
   },
 });
 

@@ -4,6 +4,7 @@ import {
   ModalBackground,
   WriteContainer,
   TitleInput,
+  TitleLine,
   ContentInput,
   FileInput,
   SubmitButton,
@@ -16,22 +17,26 @@ const WriteModal = ({ visible, setVisible }) => {
   const [imgName, setImageName] = useState();
   const [title, setTitle] = useState();
   const [contents, setContents] = useState();
+  const [curTextCount, setCurTextCount] = useState(0);
 
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
+    console.log(e.target.files[0]);
+    if (e === undefined) return;
     setImage(e.target.files[0]);
+
     setImageName(e.target.value);
   };
   const onSubmit = (e) => {
-    if (title === null || contents === null) {
+    if (title == null || contents == null) {
       alert("내용을 입력해주세요");
     }
 
     e.preventDefault();
     const postData = new FormData();
     postData.append("title", title);
-    postData.append("contents", contents);
+    postData.append("body", contents);
     postData.append("img", image);
 
     dispatch(postActions.creaetPost(postData));
@@ -43,27 +48,37 @@ const WriteModal = ({ visible, setVisible }) => {
         <ModalBackground onClick={(e) => setVisible(false)} />
         <WriteContainer>
           <TitleInput
+            placeholder="제목"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          <TitleLine />
           <ContentInput
+            placeholder="내용"
             value={contents}
-            onChange={(e) => setContents(e.target.value)}
+            onChange={(e) => {
+              if (e.target.value.length > 300) return;
+              setContents(e.target.value);
+              setCurTextCount(e.target.value.length);
+            }}
           />
+          <div>{curTextCount}/300</div>
           <FileInput>
             <div>
               <label htmlFor="file">
-                <i className="fas fa-file-image"></i>
+                <i class="far fa-image"></i>
               </label>
+
               <input
+                multiple
                 type="file"
                 id="file"
-                accept="image/*"
-                onChange={handleChange}
                 value={imgName}
                 files={image}
+                accept="image/*"
+                onChange={handleChange}
               />
-              <input className="upload" value={imgName} />
+              <input className="upload" value={imgName} readOnly />
             </div>
 
             <SubmitButton type="submit" onClick={onSubmit}>

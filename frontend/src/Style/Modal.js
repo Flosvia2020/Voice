@@ -1,9 +1,8 @@
-import { emphasize } from "@material-ui/core";
 import styled from "styled-components";
+import ReactAudioPlayer from "react-audio-player";
 
 export const ModalOveraly = styled.div`
   box-sizing: border-box;
-  display: ${({ visible }) => (visible ? "block" : "none")};
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
@@ -29,13 +28,14 @@ export const WriteContainer = styled.div`
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 60rem;
-  height: 35rem;
+  width: 40rem;
+  height: 30rem;
   top: 60px;
-  margin: 0 22%;
-  padding: 4rem 3rem;
+  margin: 3% 30%;
+  padding: 2rem 2rem;
   z-index: 999;
 
+  border-radius: 20px;
   @media screen and (max-width: 1000px) {
     margin: 0;
     width: 30rem;
@@ -45,26 +45,30 @@ export const WriteContainer = styled.div`
 export const TitleInput = styled.input`
   font-family: "TmoneyRoundWindExtraBold";
   font-size: 2.2rem;
-  width: 95%;
-  height: 4rem;
+  width: 100%;
+  height: 3rem;
   padding: 0 1rem;
   border: none;
-  box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
-  background-color: #f2f2f2;
   outline: none;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
 `;
-
+export const TitleLine = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #00cdc8;
+  box-shadow: 0px 1px 5px 1px rgba(0, 205, 200, 0.5);
+`;
 export const ContentInput = styled.textarea`
-  font-family: "TmoneyRoundWindExtraBold";
+  font-family: "TmoneyRoundWindRegular";
   resize: none;
   font-size: 1rem;
-  width: 95%;
-  height: 18rem;
+  width: 100%;
+  height: 15rem;
   margin-top: 1rem;
+  box-sizing: border-box;
   padding: 1rem 1rem;
   border: none;
-  box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
-  background-color: #f2f2f2;
   outline: none;
   vertical-align: top;
   text-align: left;
@@ -97,27 +101,28 @@ export const FileInput = styled.div`
     border: 0;
   }
   .upload {
-    width: 50%;
+    width: 10rem;
     margin-left: 1rem;
     height: 2rem;
-    box-shadow: inset 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
     border: none;
     padding-left: 1rem;
   }
 `;
 export const SubmitButton = styled.button`
+  margin-top: 20px;
   font-family: "TmoneyRoundWindExtraBold";
   font-size: 1.5rem;
   color: white;
-  width: 15rem;
+  width: 100%;
   height: 3rem;
   background-color: #00cdc8;
-  outline: none;
+  border-radius: 30px;
   border: none;
 `;
 
 export const ImageContainer = styled.img`
-  width: 100%;
+  width: 90%;
+  margin: 0 20%;
 `;
 
 export const PostContainer = styled.div`
@@ -130,7 +135,7 @@ export const PostContainer = styled.div`
   width: 40rem;
   top: 60px;
   margin: 0 30%;
-  padding: 4rem 3rem;
+  padding: 2rem 2rem;
 
   display: flex;
   flex-direction: column;
@@ -146,7 +151,7 @@ export const PostContainer = styled.div`
 `;
 
 export const WriterData = styled.div`
-  font-family: "TmoneyRoundWindExtraBold";
+  font-family: "TmoneyRoundWindRegular";
   position: absolute;
   color: white;
   left: 5px;
@@ -173,11 +178,9 @@ export const PostContent = styled.div`
   overflow-wrap: anywhere;
 `;
 
-export const RepleInput = styled.div`
+export const RepleInput = styled.form`
   margin-top: 3rem;
-  padding-top: 10px;
-  width: 540px;
-
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,8 +191,8 @@ export const RepleInput = styled.div`
     padding: 0 1rem;
     outline: none;
     border: none;
-
     background-color: #dcdcdc;
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.5);
   }
   input[type="file"] {
     position: absolute;
@@ -201,7 +204,34 @@ export const RepleInput = styled.div`
     clip: rect(0, 0, 0, 0);
     border: 0;
   }
-  label {
-    font-size: 2rem;
+  .button {
+    background-color: white;
+    border: none;
+    width: 5rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.5);
+  }
+`;
+
+export const RepleContainer = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 5px;
+  font-family: "TmoneyRoundWindRegular";
+`;
+
+export const AudioPlayer = styled(ReactAudioPlayer)`
+  width: 100%;
+  height: 3rem;
+`;
+
+export const RepleLine = styled.div`
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  p {
+    margin: 10px;
   }
 `;

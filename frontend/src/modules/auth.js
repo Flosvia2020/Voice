@@ -16,6 +16,7 @@ const authReducer = (state = initalState, action) => {
       return { isLoading: false, userData: action.userData };
     case FAIL:
       return { isLoading: false };
+
     default:
       return state;
   }

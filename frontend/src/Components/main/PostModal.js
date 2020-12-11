@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import {
   ModalOveraly,
   ModalBackground,
@@ -9,17 +9,34 @@ import {
   PostContent,
   Container,
   RepleInput,
+  RepleContainer,
+  AudioPlayer,
+  RepleLine,
 } from "../../Style/Modal";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { postActions } from "../../modules/post";
 
-const PostModal = ({ visible, setVisible }) => {
+const PostModal = ({ setVisible }) => {
   const postData = useSelector((state) => state.postReducer.postData);
   const isLoading = useSelector((state) => state.postReducer.isLoading);
-  console.log(postData);
+  const dispatch = useDispatch();
+
+  const [audioFile, setAudioFile] = useState("");
+  const [audioName, setAudioName] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append("postId", postData.id);
+    data.append("voice", audioFile);
+
+    dispatch(postActions.createReple(data));
+  };
+
   return (
     <>
-      <ModalOveraly visible={visible}>
+      <ModalOveraly>
         <ModalBackground onClick={() => setVisible(false)} />
         <PostContainer>
           {isLoading ? (
@@ -33,25 +50,72 @@ const PostModal = ({ visible, setVisible }) => {
             />
           ) : (
             <>
-              <WriterData>{postData.name}</WriterData>
+              <WriterData>
+                {postData.name}
+                <span style={{ color: "rgb(200,200,200)" }}>
+                  ({postData.userId})
+                </span>
+              </WriterData>
               <Container>
-                <ImageContainer src="https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg" />
+                {postData.imgPath !== null && (
+                  <ImageContainer src={postData.imgPath}></ImageContainer>
+                )}
                 <PostTitle>{postData.title}</PostTitle>
-                <PostContent>
-                  contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent
-                </PostContent>
+                <PostContent>{postData.body}</PostContent>
                 <RepleInput className="file">
-                  <input type="file" id="file" accept="audio/*" />
-                  <input className="upload" value="a" />
+                  <input
+                    type="file"
+                    id="file"
+                    onChange={(e) => {
+                      setAudioFile(e.target.files[0]);
+                      setAudioName(e.target.value);
+                    }}
+                    value={audioName}
+                    files={audioFile}
+                    accept=".mp3"
+                  />
+                  <input className="upload" value={audioName} readOnly />
                   <label htmlFor="file">
-                    <i class="fas fa-file-audio"></i>
+                    <div className="button">
+                      <i class="fas fa-file-audio"></i>
+                    </div>
                   </label>
+                  <button className="button" type="submit" onClick={onSubmit}>
+                    <i class="fas fa-upload"></i>
+                  </button>
                 </RepleInput>
+                <RepleContainer>
+                  <Reple
+                    userData={[
+                      { name: "sample", id: "id123" },
+                      { name: "sample2", id: "sample_123" },
+                      { name: "test1234", id: "test1234" },
+                    ]}
+                  />
+                </RepleContainer>
               </Container>
             </>
           )}
         </PostContainer>
       </ModalOveraly>
+    </>
+  );
+};
+
+const Reple = ({ userData }) => {
+  return (
+    <>
+      {userData.map((e, i) => (
+        <RepleLine>
+          <p>
+            {e.name}({e.id})
+          </p>
+          <AudioPlayer
+            controls
+            src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+          />
+        </RepleLine>
+      ))}
     </>
   );
 };
