@@ -32,6 +32,7 @@ const WriteModal = ({ visible, setVisible }) => {
     if (title == null || contents == null) {
       alert("내용을 입력해주세요");
     }
+    setContents(contents.replace(/\n/g, "<br/>"));
 
     e.preventDefault();
     const postData = new FormData();
@@ -62,7 +63,7 @@ const WriteModal = ({ visible, setVisible }) => {
               setCurTextCount(e.target.value.length);
             }}
           />
-          <div>{curTextCount}/300</div>
+          <div className="textCounter">{curTextCount}/300</div>
           <FileInput>
             <div>
               <label htmlFor="file">

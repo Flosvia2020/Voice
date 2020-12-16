@@ -136,7 +136,17 @@ const Signup = () => {
         {isLoading ? (
           <CircularProgress style={{ color: "#00cdc8", margin: "1rem 0" }} />
         ) : (
-          <ColorButton width="400px" height="50px" onClick={onHandleSubmit}>
+          <ColorButton
+            width="400px"
+            height="50px"
+            onClick={onHandleSubmit}
+            onkeyPress={(e) => {
+              if (e.key === "Enter") {
+                console.log("enter");
+                onHandleSubmit();
+              }
+            }}
+          >
             SIGN UP
           </ColorButton>
         )}

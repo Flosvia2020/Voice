@@ -27,13 +27,12 @@ const Post = ({
     dispatch(postActions.deletePost({ postId: postId }));
   };
   const editPost = () => {
-    console.log(postId);
     dispatch(postActions.loadPost(postId));
     setEditVisible(true);
   };
   return (
     <PostContainer>
-      {postVisible && <PostModal setVisible={setPostVisible} />}
+      {postVisible && <PostModal setVisible={setPostVisible} postId={postId} />}
       {editVisible && <EditModal setVisible={setEditVisible} />}
       <p>
         {nickName}

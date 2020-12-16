@@ -18,6 +18,7 @@ const initalState = {
   postList: [],
   postData: "",
   isLoading: false,
+  postDetailLoading: true,
   repleLoading: false,
 };
 
@@ -25,6 +26,8 @@ const postReducer = (state = initalState, action) => {
   switch (action.type) {
     case LOAD_REQUEST:
       return { ...state, isLoading: true };
+    case LOAD_POST:
+      return { ...state, postDetailLoading: true };
     case LOAD_SUCCESS:
       return {
         ...state,
@@ -32,7 +35,7 @@ const postReducer = (state = initalState, action) => {
         isLoading: false,
       };
     case LOAD_POST_SUCCESS:
-      return { ...state, postData: action.postData, isLoading: false };
+      return { ...state, postData: action.postData, postDetailLoading: false };
     default:
       return state;
   }

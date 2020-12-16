@@ -7,7 +7,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../modules/auth";
 import client from "../../api/client";
-
+import img from "../../image/voice.jpg";
 const Container = styled.div`
   margin-top: 10%;
   display: flex;
@@ -54,9 +54,34 @@ const Login = () => {
     callApi(user);
   };
 
+  const onKeyPress = (e) => {
+    if (e.key !== "Enter") {
+      return;
+    }
+    console.log("Enter");
+    onHandleSubmit();
+  };
+
   return (
-    <Container>
-      {/* {state.isSuccess && <Redirect to="/Main" />} */}
+    <Container onKeyPress={onKeyPress}>
+      <div
+        style={{
+          position: "absolute",
+          width: "40rem",
+          zIndex: "-9",
+          left: "0",
+          bottom: "0",
+        }}
+      >
+        <img src={img} style={{ width: "100%" }} />
+        <a
+          href="https://kr.freepik.com/vectors/music"
+          style={{ textDecoration: "none", fontSize: "0.5rem" }}
+        >
+          Music 벡터는 pch.vector - kr.freepik.com가 제작함
+        </a>
+      </div>
+
       <Logo>VOICE</Logo>
       <InputLabel
         placeholder="ID"

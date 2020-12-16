@@ -23,6 +23,10 @@ export const ModalBackground = styled.div`
 `;
 
 export const WriteContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   position: fixed;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
@@ -34,6 +38,11 @@ export const WriteContainer = styled.div`
   margin: 3% 30%;
   padding: 2rem 2rem;
   z-index: 999;
+
+  .textCounter {
+    width: 100%;
+    text-align: left;
+  }
 
   border-radius: 20px;
   @media screen and (max-width: 1000px) {
@@ -64,7 +73,7 @@ export const ContentInput = styled.textarea`
   resize: none;
   font-size: 1rem;
   width: 100%;
-  height: 15rem;
+  height: 30rem;
   margin-top: 1rem;
   box-sizing: border-box;
   padding: 1rem 1rem;
@@ -122,11 +131,10 @@ export const SubmitButton = styled.button`
 
 export const ImageContainer = styled.img`
   width: 90%;
-  margin: 0 20%;
 `;
 
 export const PostContainer = styled.div`
-  max-height: 700px;
+  min-height: 25rem;
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
@@ -171,15 +179,19 @@ export const PostTitle = styled.div`
   width: 100%;
   margin: 1rem 0;
 `;
-export const PostContent = styled.div`
+export const PostContent = styled.textarea`
+  resize: none;
+  outline: none;
+  border: none;
   font-family: "TmoneyRoundWindRegular";
   font-size: 1.5rem;
-  width: 100%;
+  width: 95%;
+  min-height: 25rem;
   overflow-wrap: anywhere;
 `;
 
 export const RepleInput = styled.form`
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
@@ -187,7 +199,7 @@ export const RepleInput = styled.form`
 
   input {
     width: 20rem;
-    height: 2rem;
+    height: 1.5rem;
     padding: 0 1rem;
     outline: none;
     border: none;
@@ -207,12 +219,26 @@ export const RepleInput = styled.form`
   .button {
     background-color: white;
     border: none;
-    width: 5rem;
-    height: 2rem;
-    font-size: 1.5rem;
+    width: 3rem;
+    height: 1.5rem;
+    font-size: 1rem;
     text-align: center;
     box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.5);
   }
+`;
+
+export const RepleSubmitBtn = styled.button`
+  background-color: #00cdc8;
+  border: none;
+  box-sizing: border-box;
+  padding: 0.3rem 1rem;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3rem;
+  font-size: 1rem;
+  font-family: "TmoneyRoundWindRegular";
+  color: white;
+  margin-left: 1rem;
+  width: 6rem;
 `;
 
 export const RepleContainer = styled.div`
