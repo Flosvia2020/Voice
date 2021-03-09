@@ -35,8 +35,9 @@ const Main = () => {
   const scroll = useRef();
 
   useEffect(() => {
-    setUserData(jwt_decode(localStorage.getItem("accessToken")).id);
-    dispatch(postActions.loadRequest());
+    scroll.current.scrollTop = scroll.current.scrollHeight;
+    //setUserData(jwt_decode(localStorage.getItem("accessToken")).id);
+    //dispatch(postActions.loadRequest());
     console.log(postList);
   }, []);
 
@@ -49,10 +50,6 @@ const Main = () => {
     if (scrollHeight - scrollTop < 600) {
       setItemCnt(itemCnt + 5);
     }
-    localStorage.setItem("scroll", scrollTop);
-    // if (clientHeight - scrollTop <= 100) {
-    //   setItemCnt(itemCnt + 5);
-    // }
   };
 
   const logout = () => {

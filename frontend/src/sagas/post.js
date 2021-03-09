@@ -15,9 +15,9 @@ function* loadPost(action) {
 function* createPost(action) {
   client
     .post("/api/post/upload", action.postData)
-    .then(setTimeout(() => {}, 1500))
-    .then(yield put(postActions.loadRequest()))
-    .catch((err) => alert(err.respones.data));
+    .catch((err) => alert(err))
+    .then(setTimeout(() => {}, 3000))
+    .then(yield put(postActions.loadRequest()));
 }
 
 function* editPost(action) {

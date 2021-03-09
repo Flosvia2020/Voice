@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   ModalOveraly,
   ModalBackground,
@@ -19,15 +19,16 @@ const EditModal = ({ setVisible }) => {
   const [image, setImage] = useState();
   const [imgName, setImageName] = useState("");
   const [title, setTitle] = useState(postData.title);
-  const [contents, setContents] = useState(postData.body);
-  const [curTextCount, setCurTextCount] = useState();
-
+  const [contents, setContents] = useState("0");
+  const curTextCount = useMemo(() => {
+    if (typeof contents === "string") return contents.length;
+  }, [contents]);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (postData === undefined) return;
     setTitle(postData.title);
     setContents(postData.body);
-    setCurTextCount(postData.body.length);
   }, [postData]);
 
   const handleChange = (e) => {
@@ -78,7 +79,6 @@ const EditModal = ({ setVisible }) => {
                 onChange={(e) => {
                   if (e.target.value.length > 300) return;
                   setContents(e.target.value);
-                  setCurTextCount(e.target.value.length);
                 }}
               />
               <div className="textCounter">{curTextCount}/300</div>

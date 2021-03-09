@@ -21,20 +21,33 @@ import { repleActions } from "../../modules/reple";
 const PostModal = ({ setVisible }) => {
   const postData = useSelector((state) => state.postReducer.postData);
   const isLoading = useSelector((state) => state.postReducer.postDetailLoading);
+  const userData = useSelector((state) => state.authReducer);
+  const [isComment, setIsComment] = useState(false);
   const dispatch = useDispatch();
+  const [repleIsLoading, setRepleIsLoading] = useState(false);
 
   const [audioFile, setAudioFile] = useState("");
   const [audioName, setAudioName] = useState("");
 
+  const [mp3Count, setMp3Count] = useState(0);
+
   const onSubmit = (e) => {
     e.preventDefault();
+    setIsComment(true);
+    setRepleIsLoading(true);
+    setTimeout(() => {
+      setRepleIsLoading(false);
+      setMp3Count(mp3Count + 1);
+    }, [1500]);
 
-    const data = new FormData();
-    data.append("postId", postData.id);
-    data.append("voice", audioFile);
-    data.append("body", "");
+    setAudioFile("");
+    setAudioName("");
+    // const data = new FormData();
+    // data.append("postId", postData.id);
+    // data.append("voice", audioFile);
+    // data.append("body", "");
 
-    dispatch(repleActions.createReple(data));
+    // dispatch(repleActions.createReple(data));
   };
 
   return (
@@ -57,17 +70,19 @@ const PostModal = ({ setVisible }) => {
             />
           ) : (
             <>
-              <WriterData>
-                {postData.name}
-                <span style={{ color: "rgb(200,200,200)" }}>
-                  ({postData.userId})
-                </span>
-              </WriterData>
+              <PostTitle>
+                {postData.title}
+                <WriterData>
+                  {postData.name}
+                  <span>({postData.userId})</span>
+                </WriterData>
+              </PostTitle>
+
               <Container>
                 {postData.imgPath !== null && (
                   <ImageContainer src={postData.imgPath}></ImageContainer>
                 )}
-                <PostTitle>{postData.title}</PostTitle>
+
                 <PostContent readOnly>{postData.body}</PostContent>
                 <RepleInput className="file">
                   <input
@@ -91,11 +106,8 @@ const PostModal = ({ setVisible }) => {
                     작성완료
                   </RepleSubmitBtn>
                 </RepleInput>
-                {postData.comments && (
-                  <RepleContainer>
-                    <Reple userData={postData.comments} />
-                  </RepleContainer>
-                )}
+
+                <RepleContainer></RepleContainer>
               </Container>
             </>
           )}
@@ -105,18 +117,4 @@ const PostModal = ({ setVisible }) => {
   );
 };
 
-const Reple = ({ userData }) => {
-  return (
-    <>
-      {userData.map((e, i) => (
-        <RepleLine>
-          <p>
-            {e.name}({e.id})
-          </p>
-          <AudioPlayer controls src={e.voice} />
-        </RepleLine>
-      ))}
-    </>
-  );
-};
 export default PostModal;

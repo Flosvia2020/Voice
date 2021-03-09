@@ -130,18 +130,22 @@ export const SubmitButton = styled.button`
 `;
 
 export const ImageContainer = styled.img`
-  width: 90%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 2rem;
 `;
 
 export const PostContainer = styled.div`
+  overflow-y: scroll;
   min-height: 25rem;
+  max-height: 45rem;
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
   width: 40rem;
-  top: 60px;
+  top: 1rem;
   margin: 0 30%;
   padding: 2rem 2rem;
 
@@ -160,12 +164,10 @@ export const PostContainer = styled.div`
 
 export const WriterData = styled.div`
   font-family: "TmoneyRoundWindRegular";
-  position: absolute;
-  color: white;
-  left: 5px;
-  top: -2rem;
-
-  font-size: 1.5rem;
+  left: 1rem;
+  font-size: 1rem;
+  color: rgb(200, 200, 200);
+  margin-bottom: 1rem;
 `;
 export const Container = styled.div`
   overflow-y: scroll;
@@ -177,16 +179,16 @@ export const PostTitle = styled.div`
   font-family: "TmoneyRoundWindExtraBold";
   font-size: 2rem;
   width: 100%;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 `;
-export const PostContent = styled.textarea`
+export const PostContent = styled.div`
   resize: none;
   outline: none;
   border: none;
   font-family: "TmoneyRoundWindRegular";
   font-size: 1.5rem;
   width: 95%;
-  min-height: 25rem;
+  min-height: 3rem;
   overflow-wrap: anywhere;
 `;
 

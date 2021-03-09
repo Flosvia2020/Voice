@@ -82,6 +82,7 @@ export const Posts = styled.div`
 export const Sumnail = styled.img`
   width: 28rem;
   margin: auto;
+  margin-top: 1rem;
   margin-left: 1rem;
   max-height: 50rem;
   object-fit: cover;
