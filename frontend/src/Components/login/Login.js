@@ -7,7 +7,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../modules/auth";
 import client from "../../api/client";
-
 const Container = styled.div`
   margin-top: 10%;
   display: flex;
@@ -52,11 +51,20 @@ const Login = () => {
     };
     dispatch(authActions.request());
     callApi(user);
+    //
+    history.push("./main");
+  };
+
+  const onKeyPress = (e) => {
+    if (e.key !== "Enter") {
+      return;
+    }
+    console.log("Enter");
+    onHandleSubmit();
   };
 
   return (
-    <Container>
-      {/* {state.isSuccess && <Redirect to="/Main" />} */}
+    <Container onKeyPress={onKeyPress}>
       <Logo>VOICE</Logo>
       <InputLabel
         placeholder="ID"

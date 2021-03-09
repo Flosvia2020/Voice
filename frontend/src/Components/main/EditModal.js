@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   ModalOveraly,
   ModalBackground,
@@ -11,16 +11,25 @@ import {
 } from "../../Style/Modal";
 import { postActions } from "../../modules/post";
 import { useDispatch, useSelector } from "react-redux";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const EditModal = ({ setVisible }) => {
   const postData = useSelector((state) => state.postReducer.postData);
+  const isLoading = useSelector((state) => state.postReducer.postDetailLoading);
   const [image, setImage] = useState();
   const [imgName, setImageName] = useState("");
   const [title, setTitle] = useState(postData.title);
-  const [contents, setContents] = useState(postData.body);
-  const [curTextCount, setCurTextCount] = useState();
-
+  const [contents, setContents] = useState("0");
+  const curTextCount = useMemo(() => {
+    if (typeof contents === "string") return contents.length;
+  }, [contents]);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (postData === undefined) return;
+    setTitle(postData.title);
+    setContents(postData.body);
+  }, [postData]);
 
   const handleChange = (e) => {
     setImage(e.target.files);
@@ -48,40 +57,53 @@ const EditModal = ({ setVisible }) => {
       <ModalOveraly>
         <ModalBackground onClick={(e) => setVisible(false)} />
         <WriteContainer>
-          <TitleInput
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <TitleLine />
-          <ContentInput
-            value={contents}
-            onChange={(e) => {
-              if (e.target.value.length > 300) return;
-              setContents(e.target.value);
-              setCurTextCount(e.target.value.length);
-            }}
-          />
-          <div>{curTextCount}/300</div>
-          <FileInput>
-            <div>
-              <label htmlFor="file">
-                <i class="far fa-image"></i>
-              </label>
-              <input
-                multiple
-                type="file"
-                id="file"
-                onChange={handleChange}
-                value={imgName}
-                files={image}
-                accept="image/*"
+          {isLoading ? (
+            <CircularProgress
+              style={{
+                color: "#00cdc8",
+                margin: "25% 45%",
+                width: "5rem",
+                height: "5rem",
+              }}
+            />
+          ) : (
+            <>
+              {" "}
+              <TitleInput
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
-              <input className="upload" value={imgName} readOnly />
-            </div>
-            <SubmitButton type="submit" onClick={onSubmit}>
-              수정하기
-            </SubmitButton>
-          </FileInput>
+              <TitleLine />
+              <ContentInput
+                value={contents}
+                onChange={(e) => {
+                  if (e.target.value.length > 300) return;
+                  setContents(e.target.value);
+                }}
+              />
+              <div className="textCounter">{curTextCount}/300</div>
+              <FileInput>
+                <div>
+                  <label htmlFor="file">
+                    <i class="far fa-image"></i>
+                  </label>
+                  <input
+                    multiple
+                    type="file"
+                    id="file"
+                    onChange={handleChange}
+                    value={imgName}
+                    files={image}
+                    accept="image/*"
+                  />
+                  <input className="upload" value={imgName} readOnly />
+                </div>
+                <SubmitButton type="submit" onClick={onSubmit}>
+                  수정하기
+                </SubmitButton>
+              </FileInput>
+            </>
+          )}
         </WriteContainer>
       </ModalOveraly>
     </>

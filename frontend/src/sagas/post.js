@@ -4,6 +4,7 @@ import client from "../api/client";
 
 function* loadPostList() {
   const res = yield client.get("/api/post/list");
+  setTimeout(() => {}, 1500);
   yield put(postActions.loadSuccess(res.data));
 }
 function* loadPost(action) {
@@ -12,19 +13,11 @@ function* loadPost(action) {
 }
 
 function* createPost(action) {
-  console.log(action.postData);
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      "access-token": localStorage.getItem("accessToken"),
-    },
-  };
-
   client
-    .post("/api/post/upload", action.postData, config)
-    .then(yield put(postActions.loadRequest()))
-    .then(setTimeout(2000))
-    .catch((err) => alert(err.respones.data));
+    .post("/api/post/upload", action.postData)
+    .catch((err) => alert(err))
+    .then(setTimeout(() => {}, 3000))
+    .then(yield put(postActions.loadRequest()));
 }
 
 function* editPost(action) {
@@ -42,14 +35,10 @@ function* deletePost(action) {
     .then(yield put(postActions.loadRequest()));
 }
 
-function* watchLoadPosts() {
+export default function* watchLoadPosts() {
   yield takeEvery(postTypes.LOAD_REQUEST, loadPostList);
   yield takeEvery(postTypes.CREATE_POST, createPost);
   yield takeEvery(postTypes.LOAD_POST, loadPost);
   yield takeEvery(postTypes.DELETE_POST, deletePost);
   yield takeEvery(postTypes.EDIT_POST, editPost);
-}
-
-export default function* postSaga() {
-  yield all([watchLoadPosts()]);
 }

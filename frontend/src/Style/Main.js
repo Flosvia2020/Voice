@@ -56,20 +56,34 @@ export const WriteBtn = styled.button`
 export const Posts = styled.div`
   cursor: default;
   font-family: "TmoneyRoundWindExtraBold";
-  width: 30rem;
+  width: 32rem;
   height: 100vh;
 
   display: flex;
   flex-direction: column;
   position: relative;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
+
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 1rem;
+
+    border-radius: 3rem;
+    background: #d7d7d7;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #00cdc8;
+    border-radius: 6px;
+  }
 `;
 
 export const Sumnail = styled.img`
   width: 28rem;
   margin: auto;
+  margin-top: 1rem;
+  margin-left: 1rem;
   max-height: 50rem;
   object-fit: cover;
 `;
@@ -79,8 +93,7 @@ export const PostContainer = styled.div`
   background-color: white;
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
   margin-bottom: 2rem;
-  p,
-  img {
+  p {
     margin-left: 1rem;
   }
   .title {
@@ -118,20 +131,10 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+
   width: 30rem;
   height: 80vh;
   @media screen and (max-width: 768px) {
     width: 25rem;
-  }
-  &::-webkit-scrollbar {
-    width: 1rem;
-
-    border-radius: 3rem;
-    background: #d7d7d7;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #00cdc8;
-    border-radius: 6px;
   }
 `;

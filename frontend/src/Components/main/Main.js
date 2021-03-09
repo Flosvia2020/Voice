@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createGlobalStyle } from "styled-components";
 import { HeaderContainer, WriteBtn, Posts, Container } from "../../Style/Main";
@@ -19,28 +19,37 @@ body{
 
 const Main = () => {
   const [writeVisible, setWriteVisible] = useState(false);
-
-  const postList = useSelector((state) => state.postReducer.postList);
   const [userData, setUserData] = useState(
     useSelector((state) => state.authReducer.userData)
   );
-  const [postData, setPostData] = useState();
+  const [itemCnt, setItemCnt] = useState(5);
+  const [preItemCnt, setPreItemCnt] = useState(0);
+  //const [postList, setPostList] = useState([]);
 
-  const isLoading = useSelector((state) => state.postReducer.isLoading);
   const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.postReducer.isLoading);
   const history = useHistory();
   const userId = useSelector((state) => state.authReducer.id);
+  const postList = useSelector((state) => state.postReducer.postList);
+
+  const scroll = useRef();
 
   useEffect(() => {
-    dispatch(postActions.loadRequest());
+    scroll.current.scrollTop = scroll.current.scrollHeight;
+    //setUserData(jwt_decode(localStorage.getItem("accessToken")).id);
+    //dispatch(postActions.loadRequest());
     console.log(postList);
-    if (!userData) {
-      setUserData(jwt_decode(localStorage.getItem("accessToken")).id);
-    }
   }, []);
 
   const onWriteClick = () => {
     setWriteVisible(true);
+  };
+
+  const scrollEvent = (e) => {
+    const { scrollTop, scrollHeight } = scroll.current;
+    if (scrollHeight - scrollTop < 600) {
+      setItemCnt(itemCnt + 5);
+    }
   };
 
   const logout = () => {
@@ -54,6 +63,13 @@ const Main = () => {
   };
   return (
     <div>
+      {/* <svg style={{ position: "absolute", width: "100vw", height: "100vh" }}>
+        <path
+          d="M-100 70 C 200 600, 500 180 600 200 S800 600 1500 0"
+          fill=" #00cdc8"
+          opacity="0.5"
+        />
+      </svg> */}
       <GlobalStyle />
       <HeaderContainer>
         <div className="title">VOICE</div>
@@ -73,8 +89,8 @@ const Main = () => {
         {isLoading ? (
           <CircularProgress style={{ color: "#00cdc8", margin: "1rem 0" }} />
         ) : (
-          <Posts>
-            {postList.map((e, i) => (
+          <Posts ref={scroll} onScroll={scrollEvent} className="scroll">
+            {postList.slice(preItemCnt, itemCnt).map((e, i) => (
               <Post
                 key={i}
                 postId={e.id}

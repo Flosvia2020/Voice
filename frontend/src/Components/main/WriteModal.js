@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   ModalOveraly,
   ModalBackground,
@@ -17,7 +17,10 @@ const WriteModal = ({ visible, setVisible }) => {
   const [imgName, setImageName] = useState();
   const [title, setTitle] = useState();
   const [contents, setContents] = useState();
-  const [curTextCount, setCurTextCount] = useState(0);
+  const curTextCount = useMemo(() => {
+    if (typeof contents === "string") return contents.length;
+    else return 0;
+  }, [contents]);
 
   const dispatch = useDispatch();
 
@@ -25,13 +28,13 @@ const WriteModal = ({ visible, setVisible }) => {
     console.log(e.target.files[0]);
     if (e === undefined) return;
     setImage(e.target.files[0]);
-
     setImageName(e.target.value);
   };
   const onSubmit = (e) => {
     if (title == null || contents == null) {
       alert("내용을 입력해주세요");
     }
+    setContents(contents.replace(/\n/g, "<br/>"));
 
     e.preventDefault();
     const postData = new FormData();
@@ -59,10 +62,9 @@ const WriteModal = ({ visible, setVisible }) => {
             onChange={(e) => {
               if (e.target.value.length > 300) return;
               setContents(e.target.value);
-              setCurTextCount(e.target.value.length);
             }}
           />
-          <div>{curTextCount}/300</div>
+          <div className="textCounter">{curTextCount}/300</div>
           <FileInput>
             <div>
               <label htmlFor="file">
